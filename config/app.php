@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
-
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -231,7 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
-
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ],
 
 ];

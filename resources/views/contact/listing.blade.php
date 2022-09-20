@@ -2,7 +2,7 @@
 
 @section('content')
 
- 
+
 
 <!DOCTYPE html>
 <html>
@@ -41,58 +41,66 @@ a {
   <a href="{{route('pages.add')}}"><h4>Add Contact Record</h4></a>
 </div>
 
-<table class="table table-dark table-bordered">
+<table class="table" id="users-table">
+    <thead>
+        <tr></tr>
+        <tr>
+                <th>Id</th>
+                <th>name</th>
+                <th>email</th>
+                <th>query_data</th>
+                <th>number</th>
+                <th>message</th>
+                <th>status</th>
+                <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
 
-  <tr class="x">
-    <th>Id</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Query</th>
-    <th>Number</th>
-    <th>Message</th>
-    <th>Status</th>
-    <th>Action</th>
-  </tr>
-
-  @if(isset($getallcontact) && !$getallcontact->isEmpty())
-
-    @foreach($getallcontact as $key=>$v)
-
-    <tr>
-      <td>{{$v->id}}</td> <!-- database name -->
-      <td>{{$v->name}}</td> <!-- database name -->
-      <td>{{$v->email}}</td> <!-- database name -->
-      <td>{{$v->query_data}}</td> <!-- database name -->
-      <td>{{$v->number}}</td> <!-- database name -->
-      <td>{{$v->message}}</td> <!-- database name -->
-      <td>
-      	@if($v->status == 1)
-      	  active
-        @else
-           inactive
-        @endif
-      </td>
-      <td>
-        <a href="{{route('contact.edit',$v->id)}}">Edit</a>   
-        <a href="{{route('contact.delete',$v->id)}}">Delete</a>
-      </td>
-    </tr>
-
-    @endforeach
-
-  @endif
-
+    </tbody>
 </table>
 
-  @if(isset($getallblog) && !$getallblog->isEmpty())
 
-<div style="margin-top: 40px; text-align: center;">
-  
-    {!! $getallblog->links() !!}
+<script>
+    var oTable = $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: false,
+        responsive: true,
+        ajax: {
+            url: '{!! route('contact.ajaxlisting') !!}',
+            data: function(d) {
 
-</div>
-    
-  @endif
+            }
+        },
+        columns: [{
+                data: 'id'
+            },
+            {
+                data: 'name'
+            },
+            {
+                data: 'email'
+            },
+            {
+                data: 'query_data'
+            },
+            {
+                data: 'number'
+            },
+            {
+                data: 'message'
+            },
+            {
+                data: 'status'
+            },
+            {
+                data: 'action'
+            },
+
+        ]
+    });
+</script>
 </body>
 </html>
 

@@ -44,52 +44,50 @@ img {
   <a href="{{route('achievement.add')}}"><h4>Add Achievement Record</h4></a>
 </div>
 
-<table class="table table-dark table-bordered">
+<table class="table" id="users-table">
+    <thead>
+        <tr></tr>
+        <tr>
+                <th>Id</th>
+                <th>image</th>
+                <th>status</th>
+                <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
 
-  <tr class="x">
-    <th>Id</th>
-    <th>Image</th>
-    <th>status</th>
-    <th>Action</th>
-  </tr>
-
-  @if(isset($getachievement) && !$getachievement->isEmpty())
-
-    @foreach($getachievement as $key=>$v)
-
-
-
-    <tr>
-      <td>{{$v->id}}</td> <!-- database name -->
-      <td><img src="{{asset('uploads/achievement/'.$v->image)}}" alt=""></td> <!-- database name -->
-      <td>
-      	@if($v->status == 1)
-      	  active
-        @else
-           inactive
-        @endif
-    </td>
-      <td>
-        <a href="{{route('achievement.edit',$v->id)}}">Edit</a>
-        <a href="{{route('achievement.delete',$v->id)}}">Delete</a>
-      </td>
-    </tr>
-
-    @endforeach
-
-  @endif
-
+    </tbody>
 </table>
 
-  @if(isset($getachievement) && !$getachievement->isEmpty())
 
-<div style="margin-top: 40px; text-align: center;">
+<script>
+    var oTable = $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: false,
+        responsive: true,
+        ajax: {
+            url: '{!! route('achievement.ajaxlisting') !!}',
+            data: function(d) {
 
-    {!! $getachievement->links() !!}
+            }
+        },
+        columns: [{
+                data: 'id'
+            },
+            {
+                data: 'image'
+            },
+            {
+                data: 'status'
+            },
+            {
+                data: 'action'
+            },
 
-</div>
-
-  @endif
+        ]
+    });
+</script>
 </body>
 </html>
 

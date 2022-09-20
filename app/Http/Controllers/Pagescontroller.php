@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class Pagescontroller extends Controller
 {
@@ -10,10 +11,81 @@ class Pagescontroller extends Controller
 
     public function listing(){
 
-    	$getallpages = \App\Models\Pages::simplepaginate(5);
+    	return view('pages.listing');
 
-    	return view('pages.listing',compact('getallpages'));
     }
+    public function ajaxlisting(Request $request){
+
+        $sql= \App\Models\Pages::select("*");
+        return Datatables::of($sql)
+
+            ->editColumn('id',function($data){
+                return $data->id;
+            })
+
+            ->editColumn('name',function($data){
+
+                return $data->name;
+
+            })
+
+            ->editColumn('title',function($data){
+
+                return $data->title;
+            })
+
+            ->editColumn('url',function($data){
+
+                return $data->url;
+            })
+
+
+            ->editColumn('image',function($data){
+
+                return '<img src="'.\asset('uploads/pages').'/'.$data->image.'" class="ab">';
+            })
+
+
+            ->editColumn('shortdescription',function($data){
+
+                return $data->shortdescription;
+            })
+
+            ->editColumn('longdescription',function($data){
+
+                return $data->longdescription;
+            })
+
+            ->editColumn('status',function($data){
+
+                if($data->status == 1){
+
+                    return 'Active';
+
+                }else{
+
+                    return 'Inactive';
+
+
+                }
+
+             })
+
+            ->addColumn('action',function($data){
+
+                $obj = ' <a href="'.route('pages.edit',$data->id).'">Edit</a> <a href="'.route('pages.delete',$data->id).'">Delete</a>';
+
+                return $obj;
+              })
+
+            ->filter(function ($query) use ($request) {
+
+
+            })
+            ->rawColumns(['id','name','title','url','image','shortdescription','longdescription','status','action'])
+            ->make(true);
+
+        }
 
     public function create(){
 
@@ -34,14 +106,14 @@ class Pagescontroller extends Controller
         $img = $request->file('image');
 
         if ($request->hasFile('image')) {
-           
+
             // @unlink('uploads/pages/' . $be->intro_bg2);
             $filename = rand() .'.'. $img->getClientOriginalExtension();
             $img->move('uploads/pages/', $filename);
 
             $obj->image = $filename;
         }
-       
+
         $obj->save();
 
     	return redirect()->route('pages.listing');
@@ -69,14 +141,14 @@ class Pagescontroller extends Controller
         $img = $request->file('image');
 
         if ($request->hasFile('image')) {
-           
+
             @unlink('uploads/pages/' . $oldimage);
             $filename = rand() .'.'. $img->getClientOriginalExtension();
             $img->move('uploads/pages/', $filename);
 
             $obj->image = $filename;
         }
-       
+
         $obj->save();
 
     	return redirect()->route('pages.listing');

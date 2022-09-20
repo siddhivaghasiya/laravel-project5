@@ -41,54 +41,58 @@ a {
   <a href="{{route('social.add')}}"><h4>Add Social Record</h4></a>
 </div>
 
-<table class="table table-dark table-bordered">
+<table class="table" id="users-table">
+    <thead>
+        <tr></tr>
+        <tr>
+                <th>Id</th>
+                <th>icon</th>
+                <th>name</th>
+                <th>link</th>
+                <th>status</th>
+                <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
 
-  <tr class="x">
-    <th>Id</th>
-    <th>Icon</th>
-    <th>Name</th>
-    <th>Link</th>
-    <th>status</th>
-    <th>Action</th>
-  </tr>
-
-  @if(isset($getsocial) && !$getsocial->isEmpty())
-
-    @foreach($getsocial as $key=>$v)
-
-   <tr>
-      <td>{{$v->id}}</td> <!-- database name -->
-      <td>{{$v->icon}}</td> <!-- database name -->
-      <td>{{$v->name}}</td> <!-- database name -->
-      <td>{{$v->link}}</td> <!-- database name -->
-      <td>
-      	@if($v->status == 1)
-      	  active
-        @else
-           inactive
-        @endif
-    </td>
-      <td>
-        <a href="{{route('social.edit',$v->id)}}">Edit</a>
-        <a href="{{route('social.delete',$v->id)}}">Delete</a>
-      </td>
-    </tr>
-
-    @endforeach
-
-  @endif
-
+    </tbody>
 </table>
 
-  @if(isset($getsocial) && !$getsocial->isEmpty())
 
-<div style="margin-top: 40px; text-align: center;">
+<script>
+    var oTable = $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: false,
+        responsive: true,
+        ajax: {
+            url: '{!! route('social.ajaxlisting') !!}',
+            data: function(d) {
 
-    {!! $getsocial->links() !!}
+            }
+        },
+        columns: [{
+                data: 'id'
+            },
+            {
+                data: 'icon'
+            },
+            {
+                data: 'name'
+            },
+            {
+                data: 'link'
+            },
+            {
+                data: 'status'
+            },
+            {
+                data: 'action'
+            },
 
-</div>
-
-  @endif
+        ]
+    });
+</script>
 </body>
 </html>
 

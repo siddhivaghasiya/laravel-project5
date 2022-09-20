@@ -40,42 +40,46 @@ a {
 <div style="margin-top:20px; margin-bottom:40px;">
 
 </div>
+<table class="table" id="users-table">
+    <thead>
+        <tr></tr>
+        <tr>
+                <th>Id</th>
+                <th>email</th>
+                <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
 
-<table class="table table-dark table-bordered">
-
-  <tr class="x">
-    <th>Id</th>
-    <th>email</th>
-    <th>Action</th>
-  </tr>
-
-  @if(isset($getnewslater) && !$getnewslater->isEmpty())
-
-    @foreach($getnewslater as $key=>$v)
-
-   <tr>
-      <td>{{$v->id}}</td> <!-- database name -->
-      <td>{{$v->email}}</td> <!-- database name -->
-      <td>
-        <a href="{{route('newslater.delete',$v->id)}}">Delete</a>
-      </td>
-    </tr>
-
-    @endforeach
-
-  @endif
-
+    </tbody>
 </table>
 
-  @if(isset($getsocial) && !$getsocial->isEmpty())
 
-<div style="margin-top: 40px; text-align: center;">
+<script>
+    var oTable = $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: false,
+        responsive: true,
+        ajax: {
+            url: '{!! route('newslater.ajaxlisting') !!}',
+            data: function(d) {
 
-    {!! $getsocial->links() !!}
+            }
+        },
+        columns: [{
+                data: 'id'
+            },
+            {
+                data: 'email'
+            },
+            {
+                data: 'action'
+            },
 
-</div>
-
-  @endif
+        ]
+    });
+</script>
 </body>
 </html>
 

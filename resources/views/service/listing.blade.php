@@ -2,7 +2,7 @@
 
 @section('content')
 
- 
+
 
 <!DOCTYPE html>
 <html>
@@ -31,6 +31,11 @@ a {
     text-decoration: underline;
 }
 
+img.ab {
+                height: 49px;
+                width: 75px;
+            }
+
 </style>
 </head>
 <body>
@@ -41,54 +46,58 @@ a {
   <a href="{{route('service.add')}}"><h4>Add Service Record</h4></a>
 </div>
 
-<table class="table table-dark table-bordered">
+<table class="table" id="users-table">
+    <thead>
+        <tr></tr>
+        <tr>
+                <th>Id</th>
+                <th>image</th>
+                <th>service_name</th>
+                <th>description</th>
+                <th>status</th>
+                <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
 
-  <tr class="x">
-    <th>Id</th>
-    <th>Image</th>
-    <th>Service Name</th>
-    <th>Description</th>
-    <th>status</th>
-    <th>Action</th>
-  </tr>
-
-  @if(isset($getallservice) && !$getallservice->isEmpty())
-
-    @foreach($getallservice as $key=>$v)
-
-   <tr>
-      <td>{{$v->id}}</td> <!-- database name -->
-      <td>{{$v->image}}</td> <!-- database name -->
-      <td>{{$v->service_name}}</td> <!-- database name -->
-      <td>{{$v->description}}</td> <!-- database name -->
-      <td>
-      	@if($v->status == 1)
-      	  active
-        @else
-           inactive
-        @endif
-    </td>
-      <td>
-        <a href="{{route('service.edit',$v->id)}}">Edit</a>   
-        <a href="{{route('service.delete',$v->id)}}">Delete</a>
-      </td>
-    </tr>
-
-    @endforeach
-
-  @endif
-
+    </tbody>
 </table>
 
-  @if(isset($getallservice) && !$getallservice->isEmpty())
 
-<div style="margin-top: 40px; text-align: center;">
-  
-    {!! $getallservice->links() !!}
+<script>
+    var oTable = $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: false,
+        responsive: true,
+        ajax: {
+            url: '{!! route('service.ajaxlisting') !!}',
+            data: function(d) {
 
-</div>
-    
-  @endif
+            }
+        },
+        columns: [{
+                data: 'id'
+            },
+            {
+                data: 'image'
+            },
+            {
+                data: 'service_name'
+            },
+            {
+                data: 'description'
+            },
+            {
+                data: 'status'
+            },
+            {
+                data: 'action'
+            },
+
+        ]
+    });
+</script>
 </body>
 </html>
 

@@ -18,7 +18,7 @@ class Doctorscontroller extends Controller
 
     public function ajaxlisting(Request $request){
 
-        $sql= \App\Models\Doctors               ::select("*");
+        $sql= \App\Models\Doctors::select("*");
         return Datatables::of($sql)
 
             ->editColumn('id',function($data){

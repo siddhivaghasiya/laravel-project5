@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Yajra\DataTables\Datatables;
 
 class Achievementcontroller extends Controller
 {
@@ -10,9 +11,52 @@ class Achievementcontroller extends Controller
 
     public function listing(){
 
-        $getachievement = \App\Models\Achievement::simplepaginate(5);
 
-        return view('achievement.listing',compact('getachievement'));
+        return view('achievement.listing');
+    }
+
+    public function ajaxlisting(Request $request){
+
+        $sql= \App\Models\Achievement::select("*");
+
+        return Datatables::of($sql)
+
+            ->editColumn('id',function($data){
+                return $data->id;
+            })
+
+            ->editColumn('image',function($data){
+                return '<img src="'.\asset('uploads/achievement').'/'.$data->image.'" class="ab">';
+            })
+
+
+            ->editColumn('status',function($data){
+
+                if($data->status == 1){
+
+                    return 'Active';
+
+                }else{
+
+                    return 'Inactive';
+
+
+                }
+
+            })
+            ->addColumn('action',function($data){
+
+                  $obj = ' <a href="'.route('achievement.edit',$data->id).'">Edit</a> <a href="'.route('achievement.delete',$data->id).'">Delete</a>';
+                return $obj;
+            })
+
+              ->filter(function ($query) use ($request) {
+
+
+              })
+              ->rawColumns(['id','image','status','action'])
+              ->make(true);
+
     }
 
     public function create(){

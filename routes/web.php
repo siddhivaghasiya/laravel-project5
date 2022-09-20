@@ -135,6 +135,8 @@ Route::get('adminlte/{id}/doctors-delete','\App\Http\Controllers\Doctorscontroll
 
 Route::get('adminlte/service','\App\Http\Controllers\Servicecontroller@listing')->name('service.listing');
 
+Route::get('adminlte/service/listing','\App\Http\Controllers\Servicecontroller@ajaxlisting')->name('service.ajaxlisting');
+
 Route::get('adminlte/service-add','\App\Http\Controllers\Servicecontroller@create')->name('service.add');
 
 Route::post('adminlte/service-save-add','\App\Http\Controllers\Servicecontroller@savecreate')->name('service.save-add');
@@ -148,6 +150,8 @@ Route::get('adminlte/{id}/service-delete','\App\Http\Controllers\Servicecontroll
 // contact
 
 Route::get('adminlte/contact','\App\Http\Controllers\Contactcontroller@listing')->name('contact.listing');
+
+Route::get('adminlte/contact/listing','\App\Http\Controllers\Contactcontroller@ajaxlisting')->name('contact.ajaxlisting');
 
 Route::get('adminlte/contact-create','\App\Http\Controllers\Contactcontroller@create')->name('contact.add');
 
@@ -163,6 +167,8 @@ Route::get('adminlte/{id}/contact-delete','\App\Http\Controllers\Contactcontroll
 
 Route::get('adminlte/pages','\App\Http\Controllers\Pagescontroller@listing')->name('pages.listing');
 
+Route::get('adminlte/pages/listing','\App\Http\Controllers\Pagescontroller@ajaxlisting')->name('pages.ajaxlisting');
+
 Route::get('adminlte/pages-create','\App\Http\Controllers\Pagescontroller@create')->name('pages.add');
 
 Route::post('adminlte/pages-save-create','\App\Http\Controllers\Pagescontroller@savecreate')->name('pages.save-add');
@@ -176,6 +182,8 @@ Route::get('adminlte/{id}/pages-delete','\App\Http\Controllers\Pagescontroller@d
 // social
 
 Route::get('adminlte/social','\App\Http\Controllers\Socialcontroller@listing')->name('social.listing');
+
+Route::get('adminlte/social/listing','\App\Http\Controllers\Socialcontroller@ajaxlisting')->name('social.ajaxlisting');
 
 Route::get('adminlte/social-create','\App\Http\Controllers\Socialcontroller@create')->name('social.add');
 
@@ -191,17 +199,23 @@ Route::get('adminlte/{id}/social-delete','\App\Http\Controllers\Socialcontroller
 
 Route::get('adminlte/newslater','\App\Http\Controllers\Newslatercontroller@listing')->name('newslater.listing');
 
+Route::get('adminlte/newslater/listing','\App\Http\Controllers\Newslatercontroller@ajaxlisting')->name('newslater.ajaxlisting');
+
 Route::get('adminlte/{id}/newslater-delete','\App\Http\Controllers\Newslatercontroller@delete')->name('newslater.delete');
 
 // appointment
 
 Route::get('adminlte/appointment','\App\Http\Controllers\Appointmentcontroller@listing')->name('appointment.listing');
 
+Route::get('adminlte/appointment/listing','\App\Http\Controllers\Appointmentcontroller@ajaxlisting')->name('appointment.ajaxlisting');
+
 Route::get('adminlte/{id}/appointment-delete','\App\Http\Controllers\Appointmentcontroller@delete')->name('appointment.delete');
 
 // // Achievement
 
 Route::get('adminlte/achievement','\App\Http\Controllers\Achievementcontroller@listing')->name('achievement.listing');
+
+Route::get('adminlte/achievement/listing','\App\Http\Controllers\Achievementcontroller@ajaxlisting')->name('achievement.ajaxlisting');
 
 Route::get('adminlte/achievement-add','\App\Http\Controllers\Achievementcontroller@create')->name('achievement.add');
 

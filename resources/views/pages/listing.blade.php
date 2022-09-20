@@ -2,7 +2,7 @@
 
 @section('content')
 
- 
+
 
 <!DOCTYPE html>
 <html>
@@ -31,6 +31,12 @@ a {
     text-decoration: underline;
 }
 
+img.ab {
+                height: 49px;
+                width: 75px;
+            }
+
+
 </style>
 </head>
 <body>
@@ -41,60 +47,70 @@ a {
   <a href="{{route('pages.add')}}"><h4>Add Pages Record</h4></a>
 </div>
 
-<table class="table table-dark table-bordered">
+<table class="table" id="users-table">
+    <thead>
+        <tr></tr>
+        <tr>
+                <th>Id</th>
+                <th>name</th>
+                <th>title</th>
+                <th>url</th>
+                <th>image</th>
+                <th>shortdescription</th>
+                <th>longdescription</th>
+                <th>status</th>
+                <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
 
-  <tr class="x">
-    <th>Id</th>
-    <th>Name</th>
-    <th>Title</th>
-    <th>Url</th>
-    <th>Image</th>
-    <th>Short Description</th>
-    <th>Long Description</th>
-    <th>status</th>
-    <th>Action</th>
-  </tr>
-
-  @if(isset($getallpages) && !$getallpages->isEmpty())
-
-    @foreach($getallpages as $key=>$v)
-
-   <tr>
-      <td>{{$v->id}}</td> <!-- database name -->
-      <td>{{$v->name}}</td> <!-- database name -->
-      <td>{{$v->title}}</td> <!-- database name -->
-      <td>{{$v->url}}</td> <!-- database name -->
-      <td>{{$v->image}}</td> <!-- database name -->
-      <td>{{$v->shortdescription}}</td> <!-- database name -->
-      <td>{{$v->longdescription}}</td> <!-- database name -->
-      <td>
-      	@if($v->status == 1)
-      	  active
-        @else
-           inactive
-        @endif
-    </td>
-      <td>
-        <a href="{{route('pages.edit',$v->id)}}">Edit</a>   
-        <a href="{{route('pages.delete',$v->id)}}">Delete</a>
-      </td>
-    </tr>
-
-    @endforeach
-
-  @endif
-
+    </tbody>
 </table>
 
-  @if(isset($getallpages) && !$getallpages->isEmpty())
 
-<div style="margin-top: 40px; text-align: center;">
-  
-    {!! $getallpages->links() !!}
+<script>
+    var oTable = $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: false,
+        responsive: true,
+        ajax: {
+            url: '{!! route('pages.ajaxlisting') !!}',
+            data: function(d) {
 
-</div>
-    
-  @endif
+            }
+        },
+        columns: [{
+                data: 'id'
+            },
+            {
+                data: 'name'
+            },
+            {
+                data: 'title'
+            },
+            {
+                data: 'url'
+            },
+            {
+                data: 'image'
+            },
+            {
+                data: 'shortdescription'
+            },
+            {
+                data: 'longdescription'
+            },
+            {
+                data: 'status'
+            },
+            {
+                data: 'action'
+            },
+
+        ]
+    });
+</script>
 </body>
 </html>
 
