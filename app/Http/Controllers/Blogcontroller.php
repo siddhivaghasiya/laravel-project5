@@ -98,8 +98,9 @@ class Blogcontroller extends Controller
 
     public function create(){
 
-    	$getallcategories = \App\Models\Categories::get();
-    	$getalltags = \App\Models\Tags::get();
+    	$getallcategories = \App\Models\Categories::pluck('categories','id')->toarray();
+
+    	$getalltags = \App\Models\Tags::pluck('tags','id')->toarray();
 
     	return view('blog.blog.add',compact('getallcategories','getalltags'));
     }
@@ -134,16 +135,18 @@ class Blogcontroller extends Controller
 
      public function edit($parameter){
 
-        $getallcategories = \App\Models\Categories::get();
-    	$getalltags = \App\Models\Tags::get();
+        $getallcategories = \App\Models\Categories::pluck('categories','id')->toarray();
+
+    	$getalltags = \App\Models\Tags::pluck('tags','id')->toarray();
+
         $editdata = \App\Models\Blog::where('id',$parameter)->first();
 
      return view('blog.blog.edit',compact('editdata','getallcategories','getalltags'));
     }
 
-     public function update(Request $request){
+     public function update(Request $request,$parameterId){
 
-        $obj =  \App\Models\Blog::where('id',$request->blog)->first();
+        $obj =  \App\Models\Blog::where('id',$parameterId)->first();
         $obj->title = $request->title;
         $obj->description = $request->description;
         $obj->popular_post = $request->p_post;

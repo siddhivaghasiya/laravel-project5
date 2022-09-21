@@ -84,7 +84,7 @@ class Achievementcontroller extends Controller
 
         $obj->save();
 
-    	return redirect()->route('achievement.add');
+    	return redirect()->route('achievement.listing');
     }
 
     public function edit($parameter){

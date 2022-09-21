@@ -85,9 +85,9 @@ class Tagscontroller extends Controller
         return view('blog.tages.edit',compact('geteditdata'));
     }
 
-      public function update(Request $request){
+      public function update(Request $request,$parameterId){
 
-    	$obj =  \App\Models\Tags::where('id',$request->tages)->first();
+    	$obj =  \App\Models\Tags::where('id',$parameterId)->first();
         $obj->tags = $request->tags;
         $obj->status = $request->status;
           /**database field name/form name**/

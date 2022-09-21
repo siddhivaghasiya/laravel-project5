@@ -38,7 +38,7 @@ a {
 <h2>Contact listing</h2>
 
 <div style="margin-top:20px; margin-bottom:40px;">
-  <a href="{{route('pages.add')}}"><h4>Add Contact Record</h4></a>
+  <a href="{{route('contact.add')}}"><h4>Add Contact Record</h4></a>
 </div>
 
 <table class="table" id="users-table">

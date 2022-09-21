@@ -62,7 +62,7 @@ Route::post('adminlte/blog-save-create','\App\Http\Controllers\Blogcontroller@sa
 
 Route::get('adminlte/{id}/blog-edit','\App\Http\Controllers\Blogcontroller@edit')->name('blog.edit');
 
-Route::post('adminlte/blog-save-edit','\App\Http\Controllers\Blogcontroller@update')->name('blog.save-edit');
+Route::post('adminlte/{id}/blog-save-edit','\App\Http\Controllers\Blogcontroller@update')->name('blog.save-edit');
 
 Route::get('adminlte/{id}/blog-delete','\App\Http\Controllers\Blogcontroller@delete')->name('blog.delete');
 
@@ -79,9 +79,9 @@ Route::post('adminlte/categories-saveadd','\App\Http\Controllers\Categoriescontr
 
 Route::get('adminlte/{id}/categories-edit','\App\Http\Controllers\Categoriescontroller@edit')->name('categories.edit');
 
-Route::post('adminlte/categories-save-edit','\App\Http\Controllers\Categoriescontroller@update')->name('categories.save-edit');
+Route::post('adminlte/{id}/categories-save-edit','\App\Http\Controllers\Categoriescontroller@update')->name('categories.save-edit');
 
-Route::get('adminlte/{id}/  categories-delete','\App\Http\Controllers\Categoriescontroller@delete')->name('categories.delete');
+Route::get('adminlte/{id}/categories-delete','\App\Http\Controllers\Categoriescontroller@delete')->name('categories.delete');
 
 // tags
 
@@ -95,7 +95,7 @@ Route::post('adminlte/tags-add','\App\Http\Controllers\Tagscontroller@savecreate
 
 Route::get('adminlte/{id}/tags-edit','\App\Http\Controllers\Tagscontroller@edit')->name('tag.edit');
 
-Route::post('adminlte/tags-save-edit','\App\Http\Controllers\Tagscontroller@update')->name('tag.save-edit');
+Route::post('adminlte/{id}/tags-save-edit','\App\Http\Controllers\Tagscontroller@update')->name('tag.save-edit');
 
 Route::get('adminlte/{id}/tags-delete','\App\Http\Controllers\Tagscontroller@delete')->name('tag.delete');
 
@@ -107,7 +107,7 @@ Route::get('adminlte/department/yajara-listing','\App\Http\Controllers\Departmen
 
 Route::get('adminlte/department-create','\App\Http\Controllers\Departmentcontroller@create')->name('department.create');
 
-Route::post('adminlte/department-savecreate','\App\Http\Controllers\Departmentcontroller@savecreate')->name('department.save-create');
+Route::post('adminlte/department-savecreate','\App\Http\Controllers\Departmentcontroller@savecreate')->name('department.save-add');
 
 Route::get('adminlte/{id}/department-edit','\App\Http\Controllers\Departmentcontroller@edit')->name('department.edit');
 

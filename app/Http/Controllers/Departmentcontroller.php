@@ -113,12 +113,12 @@ class Departmentcontroller extends Controller
       return view('department.edit',compact('geteditdata'));
     }
 
-    public function update(Request $request,$paramter){
+    public function update(Request $request,$paramterId){
 
-      $obj =  \App\Models\Department::where('id',$paramter)->first();
+      $obj =  \App\Models\Department::where('id',$paramterId)->first();
       $obj->title = $request->title;
       $obj->description = $request->description;
-      $obj->small_description = $request->smalldescription;
+      $obj->small_description = $request->small_description;
       $obj->number = $request->number;
       $obj->status = $request->status;
           /**database field name/form name**/

@@ -78,14 +78,14 @@ class Categoriescontroller extends Controller
 
     public function edit($parameter){
 
-       $geteditdata = \App\Models\Categories::where('id',$parameter)->firstOrfail();
+       $geteditdata = \App\Models\Categories::where('id',$parameter)->first();
 
         return view('blog.categories.edit',compact('geteditdata'));
     }
 
-     public function update(Request $request){
+     public function update(Request $request,$parameterId){
 
-    	$obj =  \App\Models\Categories::where('id',$request->categorie)->first();
+    	$obj =  \App\Models\Categories::where('id',$parameterId)->first();
         $obj->categories = $request->categories;
         $obj->status = $request->status;
           /**database field name/form name**/

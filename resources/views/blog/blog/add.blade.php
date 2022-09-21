@@ -51,7 +51,7 @@
             <label>Image:</label>
             {!! Form::file('image', null, [
                 'id' => 'image',
-                'class' => 'form-control',
+                'class' => 'form-control'
             ]) !!}
         </div>
 
@@ -75,19 +75,28 @@
 
         <div class="form-group">
             <label>popular_post</label>
-            {!! Form::checkbox('p_post', null, [
+            {!! Form::checkbox('p_post', 1,null, [
                 'id' => 'p_post',
+            ]) !!}
+        </div>
+
+        <div class="form-group">
+            <label>Categories:</label>
+            {!! Form::select('categories',$getallcategories, null, [
+                'id' => 'categories',
+                'placeholder' => 'select categories',
                 'class' => 'form-control',
             ]) !!}
         </div>
 
-
-
         <div class="form-group">
-            <label>Number:</label>
-            {!! Form::text('number', null, ['id' => 'number', 'placeholder' => 'Enter number', 'class' => 'form-control']) !!}
+            <label>Tags:</label>
+            {!! Form::select('tags',$getalltags, null, [
+                'id' => 'tags',
+                'placeholder' => 'select tags',
+                'class' => 'form-control',
+            ]) !!}
         </div>
-
 
         <div class="form-group">
             <label>Status:</label>

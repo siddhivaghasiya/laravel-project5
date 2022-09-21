@@ -80,7 +80,7 @@ class Servicecontroller extends Controller
 
     	$obj = new \App\Models\Service;
         $obj->image = $request->image;
-        $obj->service_name = $request->name;
+        $obj->service_name = $request->service_name;
         $obj->description = $request->description ;
         $obj->status = $request->status;
 

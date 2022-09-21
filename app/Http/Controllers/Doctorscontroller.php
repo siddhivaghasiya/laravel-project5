@@ -85,7 +85,7 @@ class Doctorscontroller extends Controller
 
     public function create(){
 
-    	$getdepartment = \App\Models\Department::get();
+    	$getdepartment = \App\Models\Department::pluck('title','id')->toarray();
 
     	return view('doctors.add',compact('getdepartment'));
     }
@@ -121,7 +121,7 @@ class Doctorscontroller extends Controller
 
       public function edit($parameter){
 
-    	$getdepartment = \App\Models\Department::get();
+    	$getdepartment = \App\Models\Department::pluck('title','id')->toarray();
     	 $getdoctors = \App\Models\Doctors::where('id',$parameter)->first();
 
     	return view('doctors.edit',compact('getdoctors','getdepartment'));
