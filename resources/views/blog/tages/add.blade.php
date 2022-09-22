@@ -56,6 +56,9 @@
                     'placeholder' => 'Enter tags',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('tags'))
+                    <span class="text-danger">{{ $errors->first('tags') }}</span>
+                @endif
             </div>
 
 
@@ -67,6 +70,9 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -77,28 +83,6 @@
 
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $("#tages").validate({
-                    rules: {
-                        tags: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        tags: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
 
     </body>
 

@@ -67,6 +67,12 @@ class Categoriescontroller extends Controller
 
     public function savecreate(Request $request){
 
+        $request->validate([
+            'categories' => 'required',
+            'status' => 'required',
+        ]);
+
+
     	$obj = new \App\Models\Categories;
         $obj->categories = $request->categories;
         $obj->status = $request->status;
@@ -84,6 +90,11 @@ class Categoriescontroller extends Controller
     }
 
      public function update(Request $request,$parameterId){
+
+        $request->validate([
+            'categories' => 'required',
+            'status' => 'required',
+        ]);
 
     	$obj =  \App\Models\Categories::where('id',$parameterId)->first();
         $obj->categories = $request->categories;

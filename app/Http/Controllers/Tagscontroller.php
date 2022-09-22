@@ -69,6 +69,11 @@ class Tagscontroller extends Controller
 
     public function savecreate(Request $request){
 
+        $request->validate([
+            'tags' => 'required',
+            'status' => 'required',
+        ]);
+
     	$obj = new \App\Models\Tags;
         $obj->tags = $request->tags;
         $obj->status = $request->status;
@@ -86,6 +91,11 @@ class Tagscontroller extends Controller
     }
 
       public function update(Request $request,$parameterId){
+
+        $request->validate([
+            'tags' => 'required',
+            'status' => 'required',
+        ]);
 
     	$obj =  \App\Models\Tags::where('id',$parameterId)->first();
         $obj->tags = $request->tags;

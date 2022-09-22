@@ -57,6 +57,9 @@
                     'placeholder' => 'Enter categories',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('categories'))
+                    <span class="text-danger">{{ $errors->first('categories') }}</span>
+                @endif
             </div>
 
 
@@ -68,6 +71,9 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -75,29 +81,6 @@
             <a href="{{ route('categories.listing') }}" class="btn btn-danger">Cancle</a>
 
             {!! Form::close() !!}
-
-        <script>
-            $(document).ready(function() {
-                $("#categorie").validate({
-                    rules: {
-                        categories: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        categories: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
 
     </body>
 

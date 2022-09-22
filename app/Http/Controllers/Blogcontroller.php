@@ -107,6 +107,16 @@ class Blogcontroller extends Controller
 
     public function savecreate(Request $request){
 
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'categories' => 'required',
+            'tags' => 'required',
+            'status' => 'required',
+            'image' => 'required',
+
+        ]);
+
         $obj = new \App\Models\Blog;
         $obj->title = $request->title;
         $obj->description = $request->description;
@@ -145,6 +155,17 @@ class Blogcontroller extends Controller
     }
 
      public function update(Request $request,$parameterId){
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'categories' => 'required',
+            'tags' => 'required',
+            'status' => 'required',
+            'image' => 'required',
+
+        ]);
+
 
         $obj =  \App\Models\Blog::where('id',$parameterId)->first();
         $obj->title = $request->title;

@@ -53,6 +53,9 @@
                     'placeholder' => 'Enter name',
                     'class' => 'form-control',
                 ]) !!}
+                  @if ($errors->has('name'))
+                  <span class="text-danger">{{ $errors->first('name') }}</span>
+              @endif
             </div>
 
             <div class="form-group">
@@ -62,6 +65,9 @@
                     'placeholder' => 'Enter title',
                     'class' => 'form-control',
                 ]) !!}
+                  @if ($errors->has('title'))
+                  <span class="text-danger">{{ $errors->first('title') }}</span>
+              @endif
             </div>
 
             <div class="form-group">
@@ -71,6 +77,9 @@
                     'placeholder' => 'Enter url',
                     'class' => 'form-control',
                 ]) !!}
+                  @if ($errors->has('url'))
+                  <span class="text-danger">{{ $errors->first('url') }}</span>
+              @endif
             </div>
 
 
@@ -80,6 +89,9 @@
                     'id' => 'image',
                     'class' => 'form-control',
                 ]) !!}
+                  @if ($errors->has('image'))
+                  <span class="text-danger">{{ $errors->first('image') }}</span>
+              @endif
             </div>
 
             <div class="form-group">
@@ -89,6 +101,9 @@
                     'placeholder' => 'Enter short description',
                     'class' => 'form-control',
                 ]) !!}
+                  @if ($errors->has('shortdescription'))
+                  <span class="text-danger">{{ $errors->first('shortdescription') }}</span>
+              @endif
             </div>
 
             <div class="form-group">
@@ -98,6 +113,9 @@
                     'placeholder' => 'Enter long description',
                     'class' => 'form-control',
                 ]) !!}
+                  @if ($errors->has('longdescription'))
+                  <span class="text-danger">{{ $errors->first('longdescription') }}</span>
+              @endif
             </div>
 
             <div class="form-group">
@@ -107,6 +125,9 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                  @if ($errors->has('status'))
+                  <span class="text-danger">{{ $errors->first('status') }}</span>
+              @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -116,58 +137,7 @@
             {!! Form::close() !!}
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $("#pages").validate({
-                    rules: {
-                        name: {
-                            required: true
-                        },
-                        title: {
-                            required: true
-                        },
-                        url: {
-                            required: true
-                        },
-                        image: {
-                            required: true
-                        },
-                        shortdescription: {
-                            required: true
-                        },
-                        longdescription: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        name: {
-                            required: "this field is required."
-                        },
-                        title: {
-                            required: "this field is required."
-                        },
-                        url: {
-                            required: "this field is required."
-                        },
-                        image: {
-                            required: "this field is required."
-                        },
-                        shortdescription: {
-                            required: "this field is required."
-                        },
-                        longdescription: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
+
 
     </body>
 

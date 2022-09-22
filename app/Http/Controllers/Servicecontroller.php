@@ -77,6 +77,13 @@ class Servicecontroller extends Controller
 
       public function savecreate(Request $request){
 
+        $request->validate([
+            'image' => 'required',
+            'service_name' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+
+        ]);
 
     	$obj = new \App\Models\Service;
         $obj->image = $request->image;
@@ -113,6 +120,13 @@ class Servicecontroller extends Controller
 
       public function update(Request $request,$parameterid){
 
+        $request->validate([
+            'image' => 'required',
+            'service_name' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+
+        ]);
 
     	$obj = \App\Models\Service::where('id',$parameterid)->first();
         $oldImage = $obj->image;

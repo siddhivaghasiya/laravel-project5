@@ -38,8 +38,8 @@
          <div class="container">
              <h2>Edit Blog Form</h2>
 
-             {!! Form::model($editdata,[
-                 'url' => route('blog.save-edit',$editdata->id),
+             {!! Form::model($editdata, [
+                 'url' => route('blog.save-edit', $editdata->id),
                  'id' => 'blog',
                  'method' => 'post',
                  'enctype' => 'multipart/form-data',
@@ -53,15 +53,21 @@
                      'id' => 'image',
                      'class' => 'form-control',
                  ]) !!}
+                 @if ($errors->has('image'))
+                     <span class="text-danger">{{ $errors->first('image') }}</span>
+                 @endif
              </div>
 
              <div class="form-group">
                  <label>Title:</label>
-                 {!! Form::text('title',null, [
+                 {!! Form::text('title', null, [
                      'id' => 'title',
                      'placeholder' => 'Enter title',
                      'class' => 'form-control',
                  ]) !!}
+                 @if ($errors->has('title'))
+                     <span class="text-danger">{{ $errors->first('title') }}</span>
+                 @endif
              </div>
 
              <div class="form-group">
@@ -71,21 +77,22 @@
                      'placeholder' => 'Enter description',
                      'class' => 'form-control',
                  ]) !!}
+                 @if ($errors->has('description'))
+                     <span class="text-danger">{{ $errors->first('description') }}</span>
+                 @endif
              </div>
+
              <?php
-
-                    if ($editdata->popular_post == 1) {
-
-                        $tRUEFalse = true;
-                    }else{
-
-                        $tRUEFalse = false;
-                    }
-
+             if ($editdata->popular_post == 1) {
+                 $tRUEFalse = true;
+             } else {
+                 $tRUEFalse = false;
+             }
              ?>
+
              <div class="form-group">
                  <label>popular_post</label>
-                 {!! Form::checkbox('p_post', 1, $tRUEFalse , [
+                 {!! Form::checkbox('p_post', 1, $tRUEFalse, [
                      'id' => 'p_post',
                  ]) !!}
              </div>
@@ -97,6 +104,9 @@
                      'placeholder' => 'select categories',
                      'class' => 'form-control',
                  ]) !!}
+                 @if ($errors->has('categories'))
+                     <span class="text-danger">{{ $errors->first('categories') }}</span>
+                 @endif
              </div>
 
              <div class="form-group">
@@ -106,6 +116,9 @@
                      'placeholder' => 'select tags',
                      'class' => 'form-control',
                  ]) !!}
+                 @if ($errors->has('tags'))
+                     <span class="text-danger">{{ $errors->first('tags') }}</span>
+                 @endif
              </div>
 
              <div class="form-group">
@@ -115,6 +128,9 @@
                      'placeholder' => 'select status',
                      'class' => 'form-control',
                  ]) !!}
+                 @if ($errors->has('status'))
+                     <span class="text-danger">{{ $errors->first('status') }}</span>
+                 @endif
              </div>
 
              {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -124,52 +140,6 @@
              {!! Form::close() !!}
          </div>
 
-         <script>
-             $(document).ready(function() {
-                 $("#blog").validate({
-                     rules: {
-                         image: {
-                             required: true
-                         },
-                         title: {
-                             required: true
-                         },
-                         description: {
-                             required: true
-                         },
-                         categories: {
-                             required: true
-                         },
-                         tags: {
-                             required: true
-                         },
-                         status: {
-                             required: true
-                         },
-                     },
-                     messages: {
-                         image: {
-                             required: "this field is required."
-                         },
-                         title: {
-                             required: "this field is required."
-                         },
-                         description: {
-                             required: "this field is required."
-                         },
-                         categories: {
-                             required: "this field is required."
-                         },
-                         tags: {
-                             required: "this field is required."
-                         },
-                         status: {
-                             required: "this field is required.."
-                         },
-                     }
-                 });
-             });
-         </script>
 
      </body>
 

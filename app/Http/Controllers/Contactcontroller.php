@@ -91,6 +91,16 @@ class Contactcontroller extends Controller
 
     public function savecreate(Request $request){
 
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'query_data' => 'required',
+            'number' => 'required',
+            'message' => 'required',
+            'status' => 'required',
+
+        ]);
+
      	$obj = new \App\Models\Contact;
         $obj->name = $request->name;
         $obj->email = $request->email;
@@ -113,6 +123,16 @@ class Contactcontroller extends Controller
 
 
     public function update(Request $request,$parameterid){
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'query_data' => 'required',
+            'number' => 'required',
+            'message' => 'required',
+            'status' => 'required',
+
+        ]);
 
      	$obj =  \App\Models\Contact::where('id',$parameterid)->first();
         $obj->name = $request->name;

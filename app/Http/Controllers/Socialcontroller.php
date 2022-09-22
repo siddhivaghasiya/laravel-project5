@@ -77,6 +77,19 @@ class Socialcontroller extends Controller
 
     public function savecreate(Request $request){
 
+        $request->validate([
+            'icon' => 'required',
+            'name' => 'required',
+            'link' => 'required',
+            'status' => 'required',
+
+        ], [
+            'icon.required' => 'icon is required',
+            'name.required' => 'name is required',
+            'link.required' => 'link is required',
+            'status.required' => 'status is required',
+
+        ]);
         $obj = new \App\Models\Social;
         $obj->icon = $request->icon;
         $obj->name = $request->name;
@@ -97,6 +110,20 @@ class Socialcontroller extends Controller
     }
 
     public function update(Request $request,$parameterid){
+
+        $request->validate([
+            'icon' => 'required',
+            'name' => 'required',
+            'link' => 'required',
+            'status' => 'required',
+
+        ], [
+            'icon.required' => 'icon is required',
+            'name.required' => 'name is required',
+            'link.required' => 'link is required',
+            'status.required' => 'status is required',
+
+        ]);
 
         $obj =  \App\Models\Social::where('id',$parameterid)->first();
         $obj->icon = $request->icon;

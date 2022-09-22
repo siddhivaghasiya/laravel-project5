@@ -37,8 +37,8 @@
 
         <div class="container">
             <h2>Edit Contact Form</h2>
-            {!! Form::model($geteditdata,[
-                'url' => route('contact.save-edit',$geteditdata->id),
+            {!! Form::model($geteditdata, [
+                'url' => route('contact.save-edit', $geteditdata->id),
                 'id' => 'contact',
                 'method' => 'post',
                 'enctype' => 'multipart/form-data',
@@ -53,6 +53,9 @@
                     'placeholder' => 'Enter name',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -62,6 +65,9 @@
                     'placeholder' => 'Enter email',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('email'))
+                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -71,7 +77,11 @@
                     'placeholder' => 'Enter your query',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('query_data'))
+                    <span class="text-danger">{{ $errors->first('query_data') }}</span>
+                @endif
             </div>
+
             <div class="form-group">
                 <label>Message:</label>
                 {!! Form::text('message', null, [
@@ -79,6 +89,9 @@
                     'placeholder' => 'Enter your message',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('message'))
+                    <span class="text-danger">{{ $errors->first('message') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -88,9 +101,10 @@
                     'placeholder' => 'Enter number',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('number'))
+                    <span class="text-danger">{{ $errors->first('number') }}</span>
+                @endif
             </div>
-
-
 
             <div class="form-group">
                 <label>Status:</label>
@@ -99,61 +113,18 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
 
-            <a href="{{ route('department.listing') }}" class="btn btn-danger">Cancle</a>
+            <a href="{{ route('contact.listing') }}" class="btn btn-danger">Cancle</a>
 
             {!! Form::close() !!}
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $("#contact").validate({
-                    rules: {
-                        name: {
-                            required: true
-                        },
-                        email: {
-                            required: true
-                        },
-                        query_data: {
-                            required: true
-                        },
-                        number: {
-                            required: true
-                        },
-                        message: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        name: {
-                            required: "this field is required."
-                        },
-                        email: {
-                            required: "this field is required."
-                        },
-                        query_data: {
-                            required: "this field is required."
-                        },
-                        number: {
-                            required: "this field is required."
-                        },
-                        message: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
 
     </body>
 

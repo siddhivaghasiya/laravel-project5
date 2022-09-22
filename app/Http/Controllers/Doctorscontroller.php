@@ -93,6 +93,15 @@ class Doctorscontroller extends Controller
 
     public function savecreate(Request $request){
 
+        $request->validate([
+            'image' => 'required',
+            'name' => 'required',
+            'position' => 'required',
+            'description' => 'required',
+            'department' => 'required',
+            'status' => 'required',
+
+        ]);
 
     	$obj = new \App\Models\Doctors;
         $obj->image = $request->image;
@@ -130,6 +139,15 @@ class Doctorscontroller extends Controller
 
     public function update(Request $request,$parameter){
 
+        $request->validate([
+            'image' => 'required',
+            'name' => 'required',
+            'position' => 'required',
+            'description' => 'required',
+            'department' => 'required',
+            'status' => 'required',
+
+        ]);
 
     	$obj =  \App\Models\Doctors::where('id',$parameter)->first();
         $obj->image = $request->image;

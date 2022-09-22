@@ -66,6 +66,16 @@ class Achievementcontroller extends Controller
 
     public function savecreate(Request $request){
 
+        $request->validate([
+            'image' => 'required',
+            'status' => 'required',
+
+        ], [
+            'image.required' => 'image is required',
+            'status.required' => 'status is required',
+
+        ]);
+
         $obj = new \App\Models\Achievement;
         $obj->status = $request->status;
 
@@ -96,6 +106,15 @@ class Achievementcontroller extends Controller
 
     public function update(Request $request,$parameterid){
 
+        $request->validate([
+            'image' => 'required',
+            'status' => 'required',
+
+        ], [
+            'image.required' => 'image is required',
+            'status.required' => 'status is required',
+
+        ]);
 
     	$obj = \App\Models\Achievement::where('id',$parameterid)->first();
         $oldImage = $obj->image;

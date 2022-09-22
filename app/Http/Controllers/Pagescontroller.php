@@ -94,6 +94,17 @@ class Pagescontroller extends Controller
 
     public function savecreate(Request $request){
 
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'url' => 'required',
+            'image' => 'required',
+            'shortdescription' => 'required',
+            'longdescription' => 'required',
+            'status' => 'required',
+
+        ]);
+
         $obj = new \App\Models\Pages;
         $obj->name = $request->name;
         $obj->title = $request->title;
@@ -127,6 +138,17 @@ class Pagescontroller extends Controller
     }
 
     public function update(Request $request,$parameterid){
+
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'url' => 'required',
+            'image' => 'required',
+            'shortdescription' => 'required',
+            'longdescription' => 'required',
+            'status' => 'required',
+
+        ]);
 
         $obj =  \App\Models\Pages::where('id',$parameterid)->first();
         $obj->name = $request->name;

@@ -38,8 +38,8 @@
         <div class="container">
             <h2>Department Form</h2>
 
-            {!! Form::model($geteditdata,[
-                'url' => route('department.save-edit',$geteditdata->id),
+            {!! Form::model($geteditdata, [
+                'url' => route('department.save-edit', $geteditdata->id),
                 'id' => 'department',
                 'method' => 'post',
                 'enctype' => 'multipart/form-data',
@@ -53,6 +53,9 @@
                     'id' => 'image',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('image'))
+                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -62,6 +65,9 @@
                     'placeholder' => 'Enter title',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('title'))
+                    <span class="text-danger">{{ $errors->first('title') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -71,6 +77,9 @@
                     'placeholder' => 'Enter description',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('description'))
+                    <span class="text-danger">{{ $errors->first('description') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -80,6 +89,9 @@
                     'placeholder' => 'Enter small description',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('small_description'))
+                    <span class="text-danger">{{ $errors->first('small_description') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -89,6 +101,9 @@
                     'placeholder' => 'Enter number',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('number'))
+                    <span class="text-danger">{{ $errors->first('number') }}</span>
+                @endif
             </div>
 
 
@@ -100,6 +115,9 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -109,52 +127,7 @@
             {!! Form::close() !!}
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $("#department").validate({
-                    rules: {
-                        image: {
-                            required: true
-                        },
-                        title: {
-                            required: true
-                        },
-                        description: {
-                            required: true
-                        },
-                        small_description: {
-                            required: true
-                        },
-                        number: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        image: {
-                            required: "this field is required."
-                        },
-                        title: {
-                            required: "this field is required."
-                        },
-                        description: {
-                            required: "this field is required."
-                        },
-                        small_description: {
-                            required: "this field is required."
-                        },
-                        number: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
+
 
     </body>
 

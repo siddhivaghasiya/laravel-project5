@@ -38,8 +38,8 @@
         <div class="container">
             <h2>Edit Categories Form </h2>
 
-            {!! Form::model($geteditdata,[
-                'url' => route('categories.save-edit',$geteditdata->id),
+            {!! Form::model($geteditdata, [
+                'url' => route('categories.save-edit', $geteditdata->id),
                 'id' => 'categories',
                 'method' => 'post',
                 'enctype' => 'multipart/form-data',
@@ -54,6 +54,9 @@
                     'placeholder' => 'Enter categories',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('categories'))
+                    <span class="text-danger">{{ $errors->first('categories') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -63,6 +66,9 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -73,28 +79,6 @@
 
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $("#categorie").validate({
-                    rules: {
-                        categories: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        categories: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
 
     </body>
 

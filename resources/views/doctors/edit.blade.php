@@ -38,8 +38,8 @@
         <div class="container">
             <h2>Edit Doctors Form</h2>
 
-            {!! Form::model($getdoctors,[
-                'url' => route('doctors.save-edit',$getdoctors->id),
+            {!! Form::model($getdoctors, [
+                'url' => route('doctors.save-edit', $getdoctors->id),
                 'id' => 'doctors',
                 'method' => 'post',
                 'enctype' => 'multipart/form-data',
@@ -53,6 +53,9 @@
                     'id' => 'image',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('image'))
+                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -62,6 +65,9 @@
                     'placeholder' => 'Enter name',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -71,6 +77,9 @@
                     'placeholder' => 'Enter position',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('position'))
+                    <span class="text-danger">{{ $errors->first('position') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -80,6 +89,9 @@
                     'placeholder' => 'Enter description',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('description'))
+                    <span class="text-danger">{{ $errors->first('description') }}</span>
+                @endif
             </div>
 
 
@@ -91,6 +103,9 @@
                     'placeholder' => 'select department',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('department'))
+                    <span class="text-danger">{{ $errors->first('department') }}</span>
+                @endif
             </div>
 
 
@@ -102,6 +117,9 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -111,52 +129,6 @@
             {!! Form::close() !!}
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $("#doctors").validate({
-                    rules: {
-                        image: {
-                            required: true
-                        },
-                        name: {
-                            required: true
-                        },
-                        position: {
-                            required: true
-                        },
-                        description: {
-                            required: true
-                        },
-                        department: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        image: {
-                            required: "this field is required."
-                        },
-                        name: {
-                            required: "this field is required."
-                        },
-                        position: {
-                            required: "this field is required."
-                        },
-                        description: {
-                            required: "this field is required."
-                        },
-                        department: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
 
     </body>
 

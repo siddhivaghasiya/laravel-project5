@@ -81,10 +81,20 @@ class Departmentcontroller extends Controller
 
     public function savecreate(Request $request){
 
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'small_description' => 'required',
+            'number' => 'required',
+            'status' => 'required',
+            'image' => 'required',
+
+        ]);
+
       $obj = new \App\Models\Department;
       $obj->title = $request->title;
       $obj->description = $request->description;
-      $obj->small_description = $request->smalldescription;
+      $obj->small_description = $request->small_description;
       $obj->number = $request->number;
       $obj->status = $request->status;
           /**database field name/form name**/
@@ -114,6 +124,16 @@ class Departmentcontroller extends Controller
     }
 
     public function update(Request $request,$paramterId){
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'small_description' => 'required',
+            'number' => 'required',
+            'status' => 'required',
+            'image' => 'required',
+
+        ]);
 
       $obj =  \App\Models\Department::where('id',$paramterId)->first();
       $obj->title = $request->title;

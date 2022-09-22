@@ -37,7 +37,7 @@
 
         <div class="container">
             <h2>Service Form</h2>
-            {!! Form::model($geteditdata,s[
+            {!! Form::model($geteditdata, [
                 'url' => route('service.save-add'),
                 'id' => 'service',
                 'method' => 'post',
@@ -52,6 +52,9 @@
                     'id' => 'image',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('image'))
+                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -61,6 +64,9 @@
                     'placeholder' => 'Enter service name',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('service_name'))
+                    <span class="text-danger">{{ $errors->first('service_name') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -70,6 +76,9 @@
                     'placeholder' => 'Enter description',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('description'))
+                    <span class="text-danger">{{ $errors->first('description') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -79,6 +88,9 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -88,40 +100,7 @@
             {!! Form::close() !!}
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $("#service").validate({
-                    rules: {
-                        image: {
-                            required: true
-                        },
-                        name: {
-                            required: true
-                        },
-                        description: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        image: {
-                            required: "this field is required."
-                        },
-                        name: {
-                            required: "this field is required."
-                        },
-                        description: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
+
 
     </body>
 

@@ -53,6 +53,9 @@
                     'placeholder' => 'Enter icon',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('icon'))
+                    <span class="text-danger">{{ $errors->first('icon') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -62,6 +65,9 @@
                     'placeholder' => 'Enter name',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -71,6 +77,9 @@
                     'placeholder' => 'Enter link',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('link'))
+                    <span class="text-danger">{{ $errors->first('link') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -80,6 +89,9 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -89,40 +101,7 @@
             {!! Form::close() !!}
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $("#social").validate({
-                    rules: {
-                        icon: {
-                            required: true
-                        },
-                        name: {
-                            required: true
-                        },
-                        link: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        icon: {
-                            required: "this field is required."
-                        },
-                        name: {
-                            required: "this field is required."
-                        },
-                        link: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
+
 
     </body>
 

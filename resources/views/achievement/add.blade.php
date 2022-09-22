@@ -52,6 +52,9 @@
                     'id' => 'image',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('image'))
+                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -61,6 +64,9 @@
                     'placeholder' => 'select status',
                     'class' => 'form-control',
                 ]) !!}
+                @if ($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
             </div>
 
             {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
@@ -71,28 +77,7 @@
 
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $("#achievement").validate({
-                    rules: {
-                        image: {
-                            required: true
-                        },
-                        status: {
-                            required: true
-                        },
-                    },
-                    messages: {
-                        image: {
-                            required: "this field is required."
-                        },
-                        status: {
-                            required: "this field is required.."
-                        },
-                    }
-                });
-            });
-        </script>
+
         @include('adminlt.common.toster')
     </body>
 
